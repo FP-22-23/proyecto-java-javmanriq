@@ -3,7 +3,7 @@ package fp.tipos;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Producto {
+public class Producto  implements Comparable<Producto>{
 	
 	//Atributos basicos
 	private Integer id;
@@ -15,12 +15,14 @@ public class Producto {
 	private Category category;
 	
 	//Atributos compuestos
-	public Double variability() {
+	public Double getVariability() {
 		return highPrice-lowPrice;
-		
+	}
+	public String getProductTitle() {
+		return "El prodcucto con id: [" + id + "] tiene un precio de salida de " + openPrice + " € y solo se vende en " + country;
 	}
 	
-	//Contstuctor C1
+	//Contstuctor C1 (todos los atributos)
 	public Producto (Integer id, LocalDate date, Double openPrice, Double highPrice, Double lowPrice, Integer volume, Boolean stock, String country, Category category) {
 		this.id = id;
 		this.date = date;
@@ -33,9 +35,10 @@ public class Producto {
 		this.category = category;
 	}
 
-
-	//Constructor 2
-		//POR HACER
+	//Constructor 2 (vacío)
+	public Producto () {
+	}
+	
 	
 	//Getters and Setters generados automaticamente mediante eclipse
 	public Integer getId() {
@@ -117,9 +120,9 @@ public class Producto {
 				+ ", category=" + category + "]";
 	}
 
-	@Override
+	//hashCode generado automaticamente por eclipse
 	public int hashCode() {
-		return Objects.hash(category, country, date, highPrice, id, lowPrice, openPrice, stock, volume);
+		return Objects.hash(id,openPrice,country);
 	}
 
 	//Equals generado automaticamente mediante eclipse
@@ -137,14 +140,25 @@ public class Producto {
 				&& Objects.equals(stock, other.stock) && Objects.equals(volume, other.volume);
 	}
 
-	//Criterio de orden natural
-		//POR HACER
-	
-	//Restricciones
-		//POR HACER
+
+	//Criterio de orden natural generado automaticamente
+	public int compareTo(Producto p) {
+		int v;
+		if (p == null) {
+			throw new NullPointerException();
+		}
+		v = getId().compareTo(p.getId());
+		if (v==0) {
+			v = getOpenPrice().compareTo(p.getOpenPrice());
+		}
+		else if (v==0) {
+			v=getCountry().compareTo(p.getCountry());
+			}
+		return v;
+	}	
 }
 	
-	
+// Solo quedan las restricciones (estan definidas en el README falta implementar)
 	
 
 
