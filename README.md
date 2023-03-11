@@ -52,14 +52,14 @@ Representa un producto concreto.
 
 **Constructores**: 
 
-- C1: Construye un objeto de tipo Film con los atributos: (id, date, openPrice, highPrice,lowPrice, volume,  stock, country, category).
-- C2: Construye un objeto de tipo Product vacío.
+- C1: Construye un objeto de tipo Producto con los atributos: (id, date, openPrice, highPrice,lowPrice, volume,  stock, country, category).
+- C2: Construye un objeto de tipo Producto con los atributos: (id, openPrice, country)
 
 **Restricciones**:
  
 - R1: Consulta que el precio de salida no sea menor que 0.
 - R2: Consulta que el precio más alto sea mayor o igual que el precio de salida.
-- R3: Consulta que el precio de más bajo sea menor o igual al de salida y mayor que 0.
+- R3: Consulta que el precio más bajo sea menor o igual que el precio de salida.
 
 **Criterio de igualdad**: Se comparan todos los atributos simples mediante el metodo equals.
 

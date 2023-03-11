@@ -3,7 +3,9 @@ package fp.tipos;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class Producto  implements Comparable<Producto>{
+import fp.utiles.Checkers;
+
+public class Producto   implements Comparable<Producto>{
 	
 	//Atributos basicos
 	private Integer id;
@@ -23,7 +25,7 @@ public class Producto  implements Comparable<Producto>{
 	}
 	
 	//Contstuctor C1 (todos los atributos)
-	public Producto (Integer id, LocalDate date, Double openPrice, Double highPrice, Double lowPrice, Integer volume, Boolean stock, String country, Category category) {
+	public Producto  (Integer id, LocalDate date, Double openPrice, Double highPrice, Double lowPrice, Integer volume, Boolean stock, String country, Category category) {
 		this.id = id;
 		this.date = date;
 		this.openPrice = openPrice;
@@ -33,10 +35,15 @@ public class Producto  implements Comparable<Producto>{
 		this.stock = stock;
 		this.country = country;
 		this.category = category;
+		Checkers.check("El precio de salida no puede ser menor a 0: " + openPrice, openPrice>0);
+		Checkers.check("El precio más alto debe ser igual o mayor al precio de salida: " + highPrice+ " < " + openPrice, highPrice>=openPrice);
+		Checkers.check("El precio más bajo debe ser igual o menor al precio de salida: " + lowPrice+ " > " + openPrice, lowPrice<=openPrice);
+		
 	}
-
-	//Constructor 2 (vacío)
-	public Producto () {
+	
+	//contructor C2 
+	public Producto (Integer id, Double openPrice, String country){
+		
 	}
 	
 	
@@ -63,6 +70,7 @@ public class Producto  implements Comparable<Producto>{
 
 	public void setOpenPrice(Double openPrice) {
 		this.openPrice = openPrice;
+		Checkers.check("El precio de salida no puede ser menor a 0: " + openPrice, openPrice>0);
 	}
 
 	public Double getHighPrice() {
@@ -71,6 +79,7 @@ public class Producto  implements Comparable<Producto>{
 
 	public void setHighPrice(Double highPrice) {
 		this.highPrice = highPrice;
+		Checkers.check("El precio más alto debe ser igual o mayor al precio de salida: " + highPrice+ " < " + openPrice, highPrice>=openPrice);
 	}
 
 	public Double getLowPrice() {
@@ -79,6 +88,7 @@ public class Producto  implements Comparable<Producto>{
 
 	public void setLowPrice(Double lowPrice) {
 		this.lowPrice = lowPrice;
+		Checkers.check("El precio más bajo debe ser igual o menor al precio de salida: " + lowPrice+ " > " + openPrice, lowPrice<=openPrice);
 	}
 
 	public Integer getVolume() {
@@ -133,7 +143,7 @@ public class Producto  implements Comparable<Producto>{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Producto other = (Producto) obj;
+		Producto  other = (Producto ) obj;
 		return category == other.category && Objects.equals(country, other.country) && Objects.equals(date, other.date)
 				&& Objects.equals(highPrice, other.highPrice) && Objects.equals(id, other.id)
 				&& Objects.equals(lowPrice, other.lowPrice) && Objects.equals(openPrice, other.openPrice)
@@ -142,7 +152,7 @@ public class Producto  implements Comparable<Producto>{
 
 
 	//Criterio de orden natural generado automaticamente
-	public int compareTo(Producto p) {
+	public int compareTo(Producto  p) {
 		int v;
 		if (p == null) {
 			throw new NullPointerException();
@@ -156,9 +166,10 @@ public class Producto  implements Comparable<Producto>{
 			}
 		return v;
 	}	
+	
 }
 	
-// Solo quedan las restricciones (estan definidas en el README falta implementar)
+
 	
 
 
