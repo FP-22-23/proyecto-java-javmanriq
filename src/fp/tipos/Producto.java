@@ -35,9 +35,10 @@ public class Producto   implements Comparable<Producto>{
 		this.stock = stock;
 		this.country = country;
 		this.category = category;
-		Checkers.check("El precio de salida no puede ser menor a 0: " + openPrice, openPrice>0);
+		Checkers.check("El precio de salida no puede ser menor a 0: " + openPrice, openPrice>=0.0);
 		Checkers.check("El precio más alto debe ser igual o mayor al precio de salida: " + highPrice+ " < " + openPrice, highPrice>=openPrice);
 		Checkers.check("El precio más bajo debe ser igual o menor al precio de salida: " + lowPrice+ " > " + openPrice, lowPrice<=openPrice);
+		Checkers.check("El volumen de venta no puedes ser negativo: " + volume, volume>=0);
 		
 	}
 	
@@ -97,6 +98,7 @@ public class Producto   implements Comparable<Producto>{
 
 	public void setVolume(Integer volume) {
 		this.volume = volume;
+		Checkers.check("El volumen de venta no puedes ser negativo: " + volume, volume>=0);
 	}
 
 	public Boolean getStock() {

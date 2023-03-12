@@ -58,6 +58,10 @@ public class TestProtucto {
 		System.out.println("Constructor 1 - Caso de prueba " + i);
 		testConstructor1(2, date, 20.35, 25.80, 21.50, 35000, true, "Portugal", Category.Books);
 		
+		i++;
+		System.out.println("=======================");
+		System.out.println("Constructor 1 - Caso de prueba " + i);
+		testConstructor1(2, date, 20.35, 25.80, 18.50, -200, true, "Portugal", Category.Books);
 		
 		i++;
 		System.out.println("=======================");

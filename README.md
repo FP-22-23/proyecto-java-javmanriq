@@ -60,6 +60,7 @@ Representa un producto concreto.
 - R1: Consulta que el precio de salida no sea menor que 0.
 - R2: Consulta que el precio más alto sea mayor o igual que el precio de salida.
 - R3: Consulta que el precio más bajo sea menor o igual que el precio de salida.
+- R4: Consulta que el volumen de venta no sea menor que 0.
 
 **Criterio de igualdad**: Se comparan todos los atributos simples mediante el metodo equals.
 
