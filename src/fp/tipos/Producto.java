@@ -1,6 +1,7 @@
 package fp.tipos;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import fp.utiles.Checkers;
@@ -14,7 +15,7 @@ public class Producto   implements Comparable<Producto>{
 	private Integer volume;
 	private Boolean stock;
 	private String country;
-	private Category category;
+	private List<Category> category;
 	
 	//Atributos compuestos
 	public Double getVariability() {
@@ -25,7 +26,7 @@ public class Producto   implements Comparable<Producto>{
 	}
 	
 	//Contstuctor C1 (todos los atributos)
-	public Producto  (Integer id, LocalDate date, Double openPrice, Double highPrice, Double lowPrice, Integer volume, Boolean stock, String country, Category category) {
+	public Producto  (Integer id, LocalDate date, Double openPrice, Double highPrice, Double lowPrice, Integer volume, Boolean stock, String country, List<Category> category) {
 		this.id = id;
 		this.date = date;
 		this.openPrice = openPrice;
@@ -117,11 +118,11 @@ public class Producto   implements Comparable<Producto>{
 		this.country = country;
 	}
 
-	public Category getCategory() {
+	public List<Category> getCategory() {
 		return category;
 	}
 
-	public void setCategory(Category category) {
+	public void setCategory(List<Category> category) {
 		this.category = category;
 	}
 

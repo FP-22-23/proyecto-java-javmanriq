@@ -81,19 +81,19 @@ public class Productos {
 	}
 	
 //4. método de agrupacion mediante map (claves:categoria, valores: SortedSet de tipo base)
-	public Map<Category, SortedSet<Producto>> productosPorCategoría(){
-	Map<Category, SortedSet<Producto>> res = new HashMap<Category, SortedSet<Producto>>();
+	public Map<String, SortedSet<Producto>> productosPorCategoría(){
+	Map<String, SortedSet<Producto>> res = new HashMap<String, SortedSet<Producto>>();
 	
 	for(Producto p: productos) {
-		Category categoria = p.getCategory();
+		String pais = p.getCountry();
 		
-		if(res.containsKey(categoria)) {
-			res.get(categoria).add(p);
+		if(res.containsKey(pais)) {
+			res.get(pais).add(p);
 		}
 		else {
 			SortedSet<Producto> nuevoSet = new TreeSet<>();
 			nuevoSet.add(p);
-			res.put(categoria, nuevoSet);
+			res.put(pais, nuevoSet);
 		}
 	}	
 	return res;
