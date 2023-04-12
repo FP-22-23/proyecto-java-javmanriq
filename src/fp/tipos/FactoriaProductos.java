@@ -13,7 +13,6 @@ public class FactoriaProductos {
 	
 	public static Productos leeProductos(String nomfich) {
 		Productos res=null;
-		int i=0;
 		try {
 			List<Producto> productos=Files.lines(Paths.get(nomfich))
 									.skip(1)
@@ -30,7 +29,6 @@ public class FactoriaProductos {
 	
 	private static Producto parsearProducto(String linea) {
 		String[] trozos=linea.split(";");
-		
 		try {
 			Integer id = Integer.valueOf(trozos[0].trim());
 			LocalDate date = LocalDate.parse(trozos[1].trim(), DateTimeFormatter.ofPattern("MM dd YYYY"));
@@ -64,7 +62,7 @@ public class FactoriaProductos {
 	
 	private static List<Category> parseaCategory(String s) {
 		String[] trozos=s.split(" ");
-		List<Category> res = new ArrayList();
+		List<Category> res = new ArrayList<>();
 		
 		for(String t :trozos) {
 			if(t.equals("Tools")) {
