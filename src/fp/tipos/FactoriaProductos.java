@@ -50,7 +50,6 @@ public class FactoriaProductos {
 	
 	private static Boolean parseaBoolean(String cadena) {
 		Boolean res = null;
-		cadena=cadena.toUpperCase();
 		if(cadena.equals("true")) {
 			res = true;
 		}

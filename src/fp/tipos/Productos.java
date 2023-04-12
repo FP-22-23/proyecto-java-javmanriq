@@ -61,12 +61,12 @@ public class Productos {
 	}
 	
 //1. existe
-	public boolean productoValeMenos15() {
+	public boolean productoValeMenosx(Integer x) {
 		/*
 		 Explicar funcion
 		 */
 		for(Producto p: productos) {
-			if(p.getOpenPrice()<15) {
+			if(p.getOpenPrice()<x) {
 				return true;
 			}
 		}
