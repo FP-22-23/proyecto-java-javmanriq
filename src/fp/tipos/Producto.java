@@ -11,16 +11,13 @@ public class Producto   implements Comparable<Producto>{
 	//Atributos basicos
 	private Integer id;
 	private LocalDate date;
-	private Double openPrice, highPrice, lowPrice; 
+	private Double openPrice;
+	private Prices prices;
 	private Integer volume;
 	private Boolean stock;
 	private String country;
 	private List<Category> category;
 	
-	//Atributos compuestos
-	public Double getVariability() {
-		return highPrice-lowPrice;
-	}
 	public String getProductTitle() {
 		return "El prodcucto con id: [" + id + "] tiene un precio de salida de " + openPrice + " € y solo se vende en " + country;
 	}
@@ -30,15 +27,12 @@ public class Producto   implements Comparable<Producto>{
 		this.id = id;
 		this.date = date;
 		this.openPrice = openPrice;
-		this.highPrice = highPrice;
-		this.lowPrice = lowPrice;
+		this.prices = new Prices(highPrice,lowPrice);
 		this.volume = volume;
 		this.stock = stock;
 		this.country = country;
 		this.category = category;
 		Checkers.check("El precio de salida no puede ser menor a 0: " + openPrice, openPrice>=0.0);
-		Checkers.check("El precio más alto debe ser igual o mayor al precio de salida: " + highPrice+ " < " + openPrice, highPrice>=openPrice);
-		Checkers.check("El precio más bajo debe ser igual o menor al precio de salida: " + lowPrice+ " > " + openPrice, lowPrice<=openPrice);
 		Checkers.check("El volumen de venta no puedes ser negativo: " + volume, volume>=0);
 		
 	}
@@ -70,27 +64,17 @@ public class Producto   implements Comparable<Producto>{
 		return openPrice;
 	}
 
+	public Prices getPrices() {
+		return prices;
+	}
+
+	public void setPrices(Prices prices) {
+		this.prices = prices;
+	}
+
 	public void setOpenPrice(Double openPrice) {
 		this.openPrice = openPrice;
 		Checkers.check("El precio de salida no puede ser menor a 0: " + openPrice, openPrice>0);
-	}
-
-	public Double getHighPrice() {
-		return highPrice;
-	}
-
-	public void setHighPrice(Double highPrice) {
-		this.highPrice = highPrice;
-		Checkers.check("El precio más alto debe ser igual o mayor al precio de salida: " + highPrice+ " < " + openPrice, highPrice>=openPrice);
-	}
-
-	public Double getLowPrice() {
-		return lowPrice;
-	}
-
-	public void setLowPrice(Double lowPrice) {
-		this.lowPrice = lowPrice;
-		Checkers.check("El precio más bajo debe ser igual o menor al precio de salida: " + lowPrice+ " > " + openPrice, lowPrice<=openPrice);
 	}
 
 	public Integer getVolume() {
@@ -128,14 +112,12 @@ public class Producto   implements Comparable<Producto>{
 
 	//toString generado automaticamente por eclipse
 	public String toString() {
-		return "Producto [id=" + id + ", date=" + date + ", openPrice=" + openPrice + ", highPrice=" + highPrice
-				+ ", lowPrice=" + lowPrice + ", volume=" + volume + ", stock=" + stock + ", country=" + country
-				+ ", category=" + category + "]";
+		return "Producto [id=" + id + ", date=" + date + ", openPrice=" + openPrice + ", prices=" + prices + ", volume="
+				+ volume + ", stock=" + stock + ", country=" + country + ", category=" + category + "]";
 	}
 
-	//hashCode generado automaticamente por eclipse
 	public int hashCode() {
-		return Objects.hash(id,openPrice,country);
+		return Objects.hash(category, country, date, id, openPrice, prices, stock, volume);
 	}
 
 	//Equals generado automaticamente mediante eclipse
@@ -146,12 +128,12 @@ public class Producto   implements Comparable<Producto>{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Producto  other = (Producto ) obj;
-		return category == other.category && Objects.equals(country, other.country) && Objects.equals(date, other.date)
-				&& Objects.equals(highPrice, other.highPrice) && Objects.equals(id, other.id)
-				&& Objects.equals(lowPrice, other.lowPrice) && Objects.equals(openPrice, other.openPrice)
+		Producto other = (Producto) obj;
+		return Objects.equals(category, other.category) && Objects.equals(country, other.country)
+				&& Objects.equals(date, other.date) && Objects.equals(id, other.id)
+				&& Objects.equals(openPrice, other.openPrice) && Objects.equals(prices, other.prices)
 				&& Objects.equals(stock, other.stock) && Objects.equals(volume, other.volume);
-	}
+	}	
 
 
 	//Criterio de orden natural generado automaticamente
@@ -168,7 +150,8 @@ public class Producto   implements Comparable<Producto>{
 			v=getCountry().compareTo(p.getCountry());
 			}
 		return v;
-	}	
+	}
+
 	
 }
 	

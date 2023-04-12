@@ -40,7 +40,7 @@ public class FactoriaProductos {
 			String country = trozos[7].trim();
 			List<Category> category = parseaCategory(trozos[8].trim());
 			
-			return new Producto(id ,date ,openPrice,highPrice,lowPrice,volume,stock,country,category);
+			return new Producto(id ,date ,openPrice ,highPrice, lowPrice ,volume ,stock ,country ,category);
 		}
 		catch(Exception ex) {
 			System.out.println("Problema: " + ex.getMessage());
@@ -73,4 +73,6 @@ public class FactoriaProductos {
 		}
 		return res;
 	}
+	
+	
 }

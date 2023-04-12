@@ -9,7 +9,7 @@ public class TestProtucto {
 	
 	public static void mostrarProducto(Producto p) {
 		System.out.println(p);
-		System.out.println("getVariability: " + p.getVariability());
+		System.out.println("getVariability: " + p.getPrices().getVariability());
 		System.out.println("getProductTitle: " + p.getProductTitle());
 	}
 	
@@ -53,12 +53,8 @@ public class TestProtucto {
 		i++;
 		System.out.println("=======================");
 		System.out.println("Constructor 1 - Caso de prueba " + i);
-		testConstructor1(2, date, 20.35, 19.80, 18.50, 35000, true, "Portugal", category);
+		testConstructor1(2, date, 20.35, 19.80, 22.50, 35000, true, "Portugal", category);
 	
-		i++;
-		System.out.println("=======================");
-		System.out.println("Constructor 1 - Caso de prueba " + i);
-		testConstructor1(2, date, 20.35, 25.80, 21.50, 35000, true, "Portugal", category);
 		
 		i++;
 		System.out.println("=======================");
@@ -66,7 +62,7 @@ public class TestProtucto {
 		testConstructor1(2, date, 20.35, 25.80, 18.50, -200, true, "Portugal", category);
 		
 		i++;
-		System.out.println("=======================");
+		System.out.println("==========================================");
 		System.out.println("Constructor 2 - Caso de prueba " + i);
 		testConstructor2(2,20.35, "Portugal");
 		}
