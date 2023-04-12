@@ -31,7 +31,7 @@ public class FactoriaProductos {
 		String[] trozos=linea.split(";");
 		try {
 			Integer id = Integer.valueOf(trozos[0].trim());
-			LocalDate date = LocalDate.parse(trozos[1].trim(), DateTimeFormatter.ofPattern("MM dd YYYY"));
+			LocalDate date = LocalDate.parse(trozos[1].trim(), DateTimeFormatter.ofPattern("MM/dd/yyyy"));
 			Double openPrice = Double.valueOf(trozos[2].trim());
 			Double highPrice = Double.valueOf(trozos[3].trim());
 			Double lowPrice = Double.valueOf(trozos[4].trim());
