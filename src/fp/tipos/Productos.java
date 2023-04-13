@@ -90,7 +90,7 @@ public class Productos {
 	}
 	
 //3. una selección con filtrado
-	public List<Producto> filtrarPorPaís(String pais) {
+	public List<Producto> filtrarPorPais(String pais) {
 		/*
 		 Explicar funcion
 		 */
