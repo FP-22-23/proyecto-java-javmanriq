@@ -103,8 +103,8 @@ Clase utilizada para realizar la lectura del fichero csv que contiene la informa
 - _agregarConjunto_ : Añade un conjunto de productos que toma por el parámetro conj y lo añade a productos.
 - _eliminarPorId_ : Se elimina el producto con id equivalente al pasado como parámetro.
 
-- _productoValeMenosx: Se devuelve cierto o falso dependiendo si se encuentra algun producto con un valor de salida inferior al pasado como parámetro
-- _productoFueraStock: Se devuelve un Integer con el numero de productos que se encuentran fuera de stock.
+- _productoValeMenosx_ : Se devuelve cierto o falso dependiendo si se encuentra algun producto con un valor de salida inferior al pasado como parámetro
+- _productoFueraStock_ : Se devuelve un Integer con el numero de productos que se encuentran fuera de stock.
 - _filtrarPorPais_ : Se devuelve una lista con los productos que se venden en el país pasado como parametro.
 - _productosPorPais_ : Se devuelve un map con los paises como clave y los productos que se venden en el país clave como valores.
 - _stockDeProductos_ : Se devuelve un map con clave "en stock" o "fuera de stock" y como valor la cantidad de productos cuyo stock coincide con la clave..
