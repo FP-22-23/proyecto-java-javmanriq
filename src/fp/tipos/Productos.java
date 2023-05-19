@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 import java.util.SortedMap;
 import java.util.SortedSet;
 import java.util.TreeMap;
@@ -17,7 +16,6 @@ public class Productos {
 
 	private List<Producto> productos;
 	
-//
 	public Productos(List<Producto> productos) {
 		this.productos = productos;
 	}
@@ -32,7 +30,7 @@ public class Productos {
 //a. obtener el número de elementos
 	public Integer getNumeroProductos() {
 		/*
-		 Explicar funcion
+		 Calcula la longitud de la lista productos.
 		 */
 		return productos.size();
 	}
@@ -40,7 +38,7 @@ public class Productos {
 //b. agregar un elemento
 	public void agregarProducto(Producto p) {
 		/*
-		 Explicar funcion
+		 Añade un producto al objeto.
 		 */
 		productos.add(p);
 	}
@@ -48,7 +46,7 @@ public class Productos {
 //c. agregar una coleccion de elementos
 	public void agregarConjuntoProductos(List<Producto> conj) {
 		/*
-		 Explicar funcion
+		 Añade un conjunto de productos que toma por el parámetro conj y lo añade a productos.
 		 */
 		productos.addAll(conj);
 	}
@@ -56,7 +54,7 @@ public class Productos {
 //d. eliminar un elemento por id
 	public void eliminarPorId(Integer numId) {
 		/*
-		 Explicar funcion
+		 Se elimina el producto con id equivalente al pasado como parámetro.
 		 */
 		for(Producto p: productos) {
 			if(p.getId().equals(numId)) {
@@ -68,7 +66,8 @@ public class Productos {
 //1. existe
 	public boolean productoValeMenosx(Integer x) {
 		/*
-		 Explicar funcion
+		 Se devuelve cierto o falso dependiendo si se encuentra algun producto con un valor de salida inferior 
+		 al pasado como parámetro.
 		 */
 		for(Producto p: productos) {
 			if(p.getOpenPrice()<x) {
@@ -81,7 +80,7 @@ public class Productos {
 //1.2 existe por Streams
 	public boolean productoValeMenosxStream(Integer x) {
 		/*
-		 Explicar funcion
+		 Tiene la misma funcionalidad que el metodo anterior pero obtenido mediante streams. 
 		 */
 		return getProductos().stream()
 				.anyMatch(p->p.getOpenPrice()<x);
@@ -90,7 +89,7 @@ public class Productos {
 //2. contador
 	public Integer productosFueraStock() {
 		/*
-		 Explicar funcion
+		 Se devuelve un Integer con el numero de productos que se encuentran fuera de stock.
 		 */
 		Integer contador = 0;
 		for(Producto p: productos) {
@@ -106,7 +105,7 @@ public class Productos {
 //2.2 contador por Streams
 	public Long productosFueraStockStream() {
 		/*
-		 Explicar funcion
+		 Tiene la misma funcionalidad que el metodo anterior pero obtenido mediante streams. 
 		 */
 		return getProductos().stream()
 					.filter(p->p.getStock().equals(false))
@@ -116,7 +115,7 @@ public class Productos {
 //3. una selección con filtrado
 	public List<Producto> filtrarPorPais(String pais) {
 		/*
-		 Explicar funcion
+		 Se devuelve una lista con los productos que se venden en el país pasado como parametro.
 		 */
 		List<Producto> res = new ArrayList<>();
 		for(Producto p: productos) {
@@ -128,6 +127,9 @@ public class Productos {
 	}
 	
 //3.2 una selección con filtrado por Streams
+		/*
+		 Tiene la misma funcionalidad que el metodo anterior pero obtenido mediante streams. 
+		 */
 	public List<Producto> filtrarPorPaisStream(String pais) {
 		return getProductos().stream()
 					.filter(p->p.getCountry().equals(pais))
@@ -137,7 +139,7 @@ public class Productos {
 //4. método de agrupacion mediante map (claves:categoria, valores: SortedSet de tipo base)
 	public Map<String, SortedSet<Producto>> productosPorPais(){
 		/*
-		 Explicar funcion
+		 Se devuelve un map con los paises como clave y los productos que se venden en el país clave como valores.
 		 */
 	Map<String, SortedSet<Producto>> res = new HashMap<String, SortedSet<Producto>>();
 	
@@ -159,7 +161,8 @@ public class Productos {
 //5. método de acumulacion que devuelve un map (claves:propiedad tipo base, valores: conteo o suma de los objetos)
 	public Map<String, Integer> stockDeProductos(){
 		/*
-		 Explicar funcion
+		 Se devuelve un map con clave "en stock" o "fuera de stock" y como valor la cantidad de productos cuyo stock 
+		 coincide con la clave.
 		 */
 		Map<String, Integer> res = new HashMap<>();
 		for(Producto p: productos) {
@@ -185,7 +188,7 @@ public class Productos {
 //4.2 mínimo con filtrado
 	public Producto minimoVolumenVentasPortugal() {
 		/*
-		 Explicar funcion
+		 Se devuelve el producto que ha obtenido un volumen de ventas más pequeño en Portugal.
 		 */
 		return getProductos().stream()
 					.filter(p->p.getCountry().equals("Portugal"))
@@ -194,6 +197,9 @@ public class Productos {
 		}
 	
 //5.2 selección, con filtrado y ordenacion
+		/*
+		 Se devuelve una lista con los id de los productos de japon ordenados por el volumen de ventas registrados.
+		 */
 	public List<Integer> idPorVolumenVentasJapon() {
 		return getProductos().stream()
 				.filter(p->p.getCountry().equals("Japan"))
@@ -205,7 +211,7 @@ public class Productos {
 //6 metodo 4 mediante Streams
 	public Map<String, List<Producto>> productosPorPaisStream() {
 		/*
-		 Explicar funcion
+		 Método similar al que realiza la funcion productosPorPais pero obtenido mediante streams.
 		 */
 		return getProductos().stream()
 				.collect(Collectors.groupingBy(Producto::getCountry));
@@ -214,7 +220,7 @@ public class Productos {
 //7 método implementando collectingAndThen
 	public Map<List<Category>, Object> precioMaximoPorCategoria() {
 		/*
-		 Explicar funcion
+		 Se devuelve un map con una categoria como clave y el precio maximo registrado dentro de la categoria como valor.
 		 */
 		return getProductos().stream()
 				.collect(Collectors.groupingBy(Producto::getCategory,
@@ -224,7 +230,7 @@ public class Productos {
 //8 método de agrupacion mediante map (claves: atributo, valores: minimo)
 	public Map<String, Object> precioMinimoPorPais() {
 		/*
-		 Explicar funcion
+		 Se devuelve un map con un país como clave y el mínimo precio registrado en cada país como valor.
 		 */
 		return getProductos().stream()
 				.collect(Collectors.groupingBy(Producto::getCountry,
@@ -234,7 +240,7 @@ public class Productos {
 //9 método de agrupacion mediante map (claves: atributo, valores: n mejores elementos)
 	public SortedMap<String, List<Producto>> nPreciosMasBajosPorPais(Integer n) {
 		/*
-		 Explicar funcion
+		 Se devuelve un map con un país como clave y una lista con los n precios más bajos como valor.
 		 */
 		return getProductos().stream()
 				.collect(Collectors.groupingBy(Producto::getCountry,
@@ -247,7 +253,8 @@ public class Productos {
 //metodo auxiliar 
 	private List<Producto> nPreciosMasBajos(Integer n, List<Producto> lista){
 		/*
-		 Explicar funcion
+		 Función auxiliar de nPreciosMasBajosPorPais, la cual devuelve una lista con los precios ordenados y 
+		 limitados al parametro n.
 		 */
 		return lista.stream()
 				.sorted(Comparator.comparing(Producto::getOpenPrice))
@@ -258,7 +265,7 @@ public class Productos {
 //10 metodo que calcule un map y devuelva la clave con el valor asociado (mayor o menor) de todo el map
 	public String paisMasProductos() {
 		/*
-		 Explicar funcion
+		 Se devuelve un string que indica cual es el país con una cantidad de productos almacenados mayor.
 		 */
 		Map<String,Long> f = numProductosPorPais();
 		String res = f.entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
@@ -267,7 +274,8 @@ public class Productos {
 	
 	private Map<String, Long> numProductosPorPais(){
 		/*
-		 Explicar funcion
+		 Función auxiliar de paisMasProductos, la cual devuelve un map con el nombre de un país como clave y la 
+		 cantidad de veces que aparece como valor.
 		 */
 		return getProductos().stream()
 				.collect(Collectors.groupingBy(Producto::getCountry,Collectors.counting()));

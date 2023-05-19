@@ -103,10 +103,23 @@ Clase utilizada para realizar la lectura del fichero csv que contiene la informa
 - _agregarConjunto_ : Añade un conjunto de productos que toma por el parámetro conj y lo añade a productos.
 - _eliminarPorId_ : Se elimina el producto con id equivalente al pasado como parámetro.
 
-- _productoValeMenosx_ : Se devuelve cierto o falso dependiendo si se encuentra algun producto con un valor de salida inferior al pasado como parámetro
+- _productoValeMenosx_ : Se devuelve cierto o falso dependiendo si se encuentra algun producto con un valor de salida inferior al pasado como parámetro.
+- _productoValeMenosxStream_ : Tiene la misma funcionalidad que el metodo anterior pero obtenido mediante streams. 
 - _productoFueraStock_ : Se devuelve un Integer con el numero de productos que se encuentran fuera de stock.
+- _productoFueraStockStream_ : Tiene la misma funcionalidad que el metodo anterior pero obtenido mediante streams. 
 - _filtrarPorPais_ : Se devuelve una lista con los productos que se venden en el país pasado como parametro.
+- _filtrarPorPaisStream_ : Tiene la misma funcionalidad que el metodo anterior pero obtenido mediante streams. 
 - _productosPorPais_ : Se devuelve un map con los paises como clave y los productos que se venden en el país clave como valores.
-- _stockDeProductos_ : Se devuelve un map con clave "en stock" o "fuera de stock" y como valor la cantidad de productos cuyo stock coincide con la clave..
+- _stockDeProductos_ : Se devuelve un map con clave "en stock" o "fuera de stock" y como valor la cantidad de productos cuyo stock coincide con la clave.
+- _minimoVolumenVentasPortugal_ : Se devuelve el producto que ha obtenido un volumen de ventas más pequeño en Portugal.
+- _idPorVolumenVentasJapon_ : Se devuelve una lista con los id de los productos de japon ordenados por el volumen de ventas registrados.
+- _productosPorPaisStream_ : Método similar al que realiza la funcion productosPorPais pero obtenido mediante streams.
+- _precioMaximoPorCategoria_ : Se devuelve un map con una categoria como clave y el precio maximo registrado dentro de la categoria como valor.
+- _precioMinimoPorPais_ : Se devuelve un map con un país como clave y el mínimo precio registrado en cada país como valor.
+- _nPreciosMasBajosPorPais_ : Se devuelve un map con un país como clave y una lista con los n precios más bajos como valor.
+- _nPreciosMasBajos_ : Función auxiliar de nPreciosMasBajosPorPais, la cual devuelve una lista con los precios ordenados y limitados al parametro n.
+- _paisMasProductos_ : Se devuelve un string que indica cual es el país con una cantidad de productos almacenados mayor.
+- _numProductosPais_ : Función auxiliar de paisMasProductos, la cual devuelve un map con el nombre de un país como clave y la cantidad de veces que aparece como valor.
+
 
  
