@@ -94,6 +94,7 @@ Clase utilizada para realizar la lectura del fichero csv que contiene la informa
 **Constructores**:
 - C1: Constructor por defecto. Crea un objeto de tipo Productos sin ningun productos almacenado.
 - C2: Constructor con un parametro de tipo List<Producto>. Crea un objeto de tipo Productos con los productos incluidos en la lista dada como parámetro.
+- C3: Constructor con todas las propiedades básicas y un stream de objetos del tipo Productos, que crea un objeto contenedor con todos los elementos del Stream.
 
 **Criterio de igualdad**: Dos productos son iguales si lo son sus propiedades de producto.
 

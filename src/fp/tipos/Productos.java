@@ -3,6 +3,7 @@ package fp.tipos;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -11,6 +12,7 @@ import java.util.SortedSet;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Productos {
 
@@ -22,6 +24,10 @@ public class Productos {
 	
 	public Productos() {
 		this.productos = new ArrayList<>();
+	}
+	
+	public Productos(Stream<Producto> productos) {
+		this.productos = productos.collect(Collectors.toList());
 	}
 	
 	public List<Producto> getProductos() {
