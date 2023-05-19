@@ -5,7 +5,7 @@ import fp.tipos.Productos;
 
 public class TestFactoriaProductos {
 	public static void main(String[] args) {
-		testLeeProductos("data/Amazon_stocks1.csv");
+		testLeeProductos("data/Amazon_Stocks.csv");
 	}
 	
 	private static void testLeeProductos(String fichero) {

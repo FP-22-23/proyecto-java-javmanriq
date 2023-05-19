@@ -1,12 +1,17 @@
 package fp.tipos;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.SortedMap;
 import java.util.SortedSet;
+import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 public class Productos {
 
@@ -73,6 +78,15 @@ public class Productos {
 		return false;
 	}
 	
+//1.2 existe por Streams
+	public boolean productoValeMenosxStream(Integer x) {
+		/*
+		 Explicar funcion
+		 */
+		return getProductos().stream()
+				.anyMatch(p->p.getOpenPrice()<x);
+	}
+	
 //2. contador
 	public Integer productosFueraStock() {
 		/*
@@ -89,6 +103,16 @@ public class Productos {
 		return contador;
 	}
 	
+//2.2 contador por Streams
+	public Long productosFueraStockStream() {
+		/*
+		 Explicar funcion
+		 */
+		return getProductos().stream()
+					.filter(p->p.getStock().equals(false))
+					.count();
+	}
+	
 //3. una selección con filtrado
 	public List<Producto> filtrarPorPais(String pais) {
 		/*
@@ -102,6 +126,13 @@ public class Productos {
 		}
 		return res;
 	}
+	
+//3.2 una selección con filtrado por Streams
+	public List<Producto> filtrarPorPaisStream(String pais) {
+		return getProductos().stream()
+					.filter(p->p.getCountry().equals(pais))
+					.collect(Collectors.toList());
+		}
 	
 //4. método de agrupacion mediante map (claves:categoria, valores: SortedSet de tipo base)
 	public Map<String, SortedSet<Producto>> productosPorPais(){
@@ -149,6 +180,97 @@ public class Productos {
 		}
 		
 		return res;
+	}
+	
+//4.2 mínimo con filtrado
+	public Producto minimoVolumenVentasPortugal() {
+		/*
+		 Explicar funcion
+		 */
+		return getProductos().stream()
+					.filter(p->p.getCountry().equals("Portugal"))
+					.min(Comparator.comparing(Producto::getVolume))
+					.get();
+		}
+	
+//5.2 selección, con filtrado y ordenacion
+	public List<Integer> idPorVolumenVentasJapon() {
+		return getProductos().stream()
+				.filter(p->p.getCountry().equals("Japan"))
+				.sorted(Comparator.comparing(Producto::getVolume))
+				.map(Producto::getId)
+				.collect(Collectors.toList());			
+	}
+	
+//6 metodo 4 mediante Streams
+	public Map<String, List<Producto>> productosPorPaisStream() {
+		/*
+		 Explicar funcion
+		 */
+		return getProductos().stream()
+				.collect(Collectors.groupingBy(Producto::getCountry));
+	}
+	
+//7 método implementando collectingAndThen
+	public Map<List<Category>, Object> precioMaximoPorCategoria() {
+		/*
+		 Explicar funcion
+		 */
+		return getProductos().stream()
+				.collect(Collectors.groupingBy(Producto::getCategory,
+						Collectors.collectingAndThen(Collectors.maxBy(Comparator.comparing(Producto::getOpenPrice)),p->p.get().getOpenPrice())));
+	}
+	
+//8 método de agrupacion mediante map (claves: atributo, valores: minimo)
+	public Map<String, Object> precioMinimoPorPais() {
+		/*
+		 Explicar funcion
+		 */
+		return getProductos().stream()
+				.collect(Collectors.groupingBy(Producto::getCountry,
+						Collectors.collectingAndThen(Collectors.minBy(Comparator.comparing(Producto::getOpenPrice)),p->p.get().getOpenPrice())));
+	}
+	
+//9 método de agrupacion mediante map (claves: atributo, valores: n mejores elementos)
+	public SortedMap<String, List<Producto>> nPreciosMasBajosPorPais(Integer n) {
+		/*
+		 Explicar funcion
+		 */
+		return getProductos().stream()
+				.collect(Collectors.groupingBy(Producto::getCountry,
+						TreeMap::new,
+						Collectors.collectingAndThen(Collectors.toList(), 
+						lista -> nPreciosMasBajos(n,lista))));
+	}
+
+	
+//metodo auxiliar 
+	private List<Producto> nPreciosMasBajos(Integer n, List<Producto> lista){
+		/*
+		 Explicar funcion
+		 */
+		return lista.stream()
+				.sorted(Comparator.comparing(Producto::getOpenPrice))
+				.limit(n)
+				.collect(Collectors.toList());
+	}
+	
+//10 metodo que calcule un map y devuelva la clave con el valor asociado (mayor o menor) de todo el map
+	public String paisMasProductos() {
+		/*
+		 Explicar funcion
+		 */
+		Map<String,Long> f = numProductosPorPais();
+		String res = f.entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
+		return res;
+	}
+	
+	private Map<String, Long> numProductosPorPais(){
+		/*
+		 Explicar funcion
+		 */
+		return getProductos().stream()
+				.collect(Collectors.groupingBy(Producto::getCountry,Collectors.counting()));
 	}
 
 //Criterio de igualdad generado automaticamente mediante eclipse

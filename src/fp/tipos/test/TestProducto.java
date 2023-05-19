@@ -5,7 +5,7 @@ import java.util.List;
 
 import fp.tipos.*;
 
-public class TestProtucto {
+public class TestProducto {
 	
 	public static void mostrarProducto(Producto p) {
 		System.out.println(p);
